@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 
 const leadSchema = new mongoose.Schema(
@@ -11,37 +10,45 @@ const leadSchema = new mongoose.Schema(
 
     contactPerson: {
       type: String,
-      trim: true
+      trim: true,
+      required: true
     },
 
     phone: {
       type: String,
-      trim: true
+      trim: true,
+      required: true
+
     },
 
     email: {
       type: String,
-      trim: true
+      trim: true,
+      required: true
     },
 
     city: {
       type: String,
-      trim: true
+      trim: true,
+      required: true
     },
 
     businessCategory: {
       type: String,
-      trim: true
+      trim: true,
+      required: true
     },
 
-    websiteUrl: {     
+    websiteUrl: {
       type: String,
-      trim: true        
+      trim: true,
+      required: true
     },
 
     socialMediaUrl: {
       type: String,
-      trim: true
+      trim: true,
+      required: true
     },
 
     potentialService: {
@@ -52,7 +59,8 @@ const leadSchema = new mongoose.Schema(
         "SEO",
         "Automation",
         "Other"
-      ]
+      ],
+      required: true
     },
 
     status: {
@@ -66,25 +74,32 @@ const leadSchema = new mongoose.Schema(
         "Won",
         "Lost"
       ],
-      default: "New"
+      default: "New",
+      required: true
     },
 
-
     notes: {
-      type: String
+      type: String,
+      required: true
     },
 
     assignedTo: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
+      ref: "User",
+      required: true
     },
-   
+
+    assignedTeamMember: {
+      type: String,
+      default: "",
+      required: true
+    },
 
     followUpDate: {
-      type: Date
+      type: Date,
+      required: true
     }
   },
-
   {
     timestamps: true
   }

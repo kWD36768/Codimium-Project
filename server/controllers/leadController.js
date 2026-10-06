@@ -47,8 +47,10 @@ const readLeadById = async (req , res)=>{
 
     const response = await Lead.findByIdAndUpdate(
       id,
-      req.body,
-      { new: true }
+     {$set : req.body}, 
+      { new: true,
+        runValidators : true
+       }
     );
 
     res.status(200).json({
@@ -65,4 +67,60 @@ const readLeadById = async (req , res)=>{
     });
   }
 };
-module.exports = {addLead , readLead , readLeadById ,updateLead}
+
+const deleteLead = async (req, res) => {
+
+  try{
+
+    const {id}  = req.params ; 
+    
+ const response  = await Lead.findByIdAndDelete(req.params.id);
+    res.status(200).json({message : "Lead Deleted successfully" , data : response})    
+
+  }
+
+  catch(error){
+    console.log(error)
+   
+    res.status(500).json({message : "Failed to delete lead"})    
+  }
+}
+  const deleteMany = async (req , res) =>{
+    try{
+
+      const response = await Lead.deleteMany({_id  : {$in  : req.body.ids}});
+      res.status(200).json({message : "Leads deleted successfully" , data : response})
+    }
+
+    catch(error){
+      console.log(error)
+      res.status(500).json({message : "Failed to delete leads"})
+    }
+} 
+
+const searchLead = async(req , res) =>{
+  try{
+    const response  = await Lead.find({
+      $or : [
+        {businessName : {$regex : new RegExp(req.params.key , "i")}},
+        {businessCategory : {$regex : new RegExp(req.params.key , "i")}},
+        {city : {$regex : new RegExp(req.params.key , "i")}},
+        {status : {$regex : new RegExp(req.params.key , "i")}},
+        {assignedTeamMember : {$regex : new RegExp(req.params.key , "i")}}
+           
+      ]
+    })
+
+    if(!response){
+    return res.status(404).json({message : "No leads found matching the search criteria"})
+    }
+    res.status(200).json({message : "Leads found successfully" , data : response})
+  }
+
+  catch(error){
+    console.log(error)
+    res.status(500).json({message : "Failed to search leads"})
+  }
+
+}
+module.exports = {addLead , readLead , readLeadById ,updateLead ,deleteLead , deleteMany,searchLead} 

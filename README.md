@@ -403,12 +403,3 @@ Built with ❤️ using the **MERN Stack**.
 
 ---
 
-## ⭐ Future Improvements
-
-* 📧 Email Notifications
-* 🔔 Automated Follow-up Reminders
-* 📈 Advanced Analytics
-* 📊 Sales Reports
-* 🔎 Advanced Lead Filtering
-* 📱 Improved Mobile Experience
-* 📤 Advanced Import / Export
