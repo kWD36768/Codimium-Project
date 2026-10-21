@@ -122,7 +122,7 @@ Users can create new leads by entering the required business and contact informa
 
 <!-- Add Add Lead Screenshot here later -->
 
- [Add Lead](./screenshots/addlead.jpeg) 
+![Add Lead](./screenshots/addlead.jpeg)
 
 ---
 
@@ -133,7 +133,7 @@ The Pipeline section helps users track leads according to their current sales st
 
 <!-- Add Pipeline Screenshot here later -->
 
-[Pipeline](./screenshots/pipeline.jpeg) 
+![Pipeline](./screenshots/pipeline.jpeg)
 
 ---
 
@@ -143,7 +143,7 @@ The Follow-ups section helps users keep track of communication and follow-up act
 
 <!-- Add Follow-ups Screenshot here later -->
 
-[Follow-ups](./screenshots/followups.png) 
+![Follow-ups](./screenshots/followups.jpeg)
 
 ---
 
@@ -153,7 +153,7 @@ Admin users can manage CRM team members and their access to leads.
 
 <!-- Add Users Screenshot here later -->
 
-[Users](./screenshots/users.jpeg) 
+![Users](./screenshots/users.jpeg)
 
 ---
 
@@ -163,7 +163,7 @@ The Import / Export section is designed for handling lead data efficiently.
 
 <!-- Add Import / Export Screenshot here later -->
 
-[Import Export](./screenshots/import-export.jpeg) 
+![Import Export](./screenshots/import-export.jpeg)
 
 ---
 
