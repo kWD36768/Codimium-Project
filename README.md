@@ -74,7 +74,7 @@ Protected CRM Pages
 
 <!-- Add Authentication Screenshot here later -->
 
-<!-- ![Authentication](./screenshots/authentication.png) -->
+<!-- ![Authentication](./screenshots/authentication.png) 
 
 ---
 
@@ -86,7 +86,7 @@ The dashboard provides an overview of the CRM system and gives users quick acces
 
 <!-- Add Dashboard Screenshot here later -->
 
-<!-- ![Dashboard](./screenshots/dashboard.png) -->
+[Dashboard](./screenshots/dashboard.jpeg) 
 
 ---
 
@@ -111,7 +111,7 @@ The Leads section allows users to view and manage potential clients.
 
 <!-- Add Leads Screenshot here later -->
 
-<!-- ![Leads](./screenshots/leads.png) -->
+[Leads](./screenshots/leads.jpeg) 
 
 ---
 
@@ -121,19 +121,10 @@ Users can create new leads by entering the required business and contact informa
 
 <!-- Add Add Lead Screenshot here later -->
 
-<!-- ![Add Lead](./screenshots/add-lead.png) -->
+ ![Add Lead](./screenshots/addlead.jpeg) 
 
 ---
 
-## 📋 Lead Details
-
-Users can open an individual lead and view its complete information.
-
-<!-- Add Lead Details Screenshot here later -->
-
-<!-- ![Lead Details](./screenshots/lead-details.png) -->
-
----
 
 ## 📊 Pipeline
 
@@ -141,7 +132,7 @@ The Pipeline section helps users track leads according to their current sales st
 
 <!-- Add Pipeline Screenshot here later -->
 
-<!-- ![Pipeline](./screenshots/pipeline.png) -->
+[Pipeline](./screenshots/pipeline.jpeg) 
 
 ---
 
@@ -151,7 +142,7 @@ The Follow-ups section helps users keep track of communication and follow-up act
 
 <!-- Add Follow-ups Screenshot here later -->
 
-<!-- ![Follow-ups](./screenshots/follow-ups.png) -->
+[Follow-ups](./screenshots/followups.png) 
 
 ---
 
@@ -161,7 +152,7 @@ Admin users can manage CRM team members and their access to leads.
 
 <!-- Add Users Screenshot here later -->
 
-<!-- ![Users](./screenshots/users.png) -->
+[Users](./screenshots/users.jpeg) 
 
 ---
 
@@ -171,7 +162,7 @@ The Import / Export section is designed for handling lead data efficiently.
 
 <!-- Add Import / Export Screenshot here later -->
 
-<!-- ![Import Export](./screenshots/import-export.png) -->
+[Import Export](./screenshots/import-export.jpeg) 
 
 ---
 
@@ -325,8 +316,8 @@ npm run dev
 
 ```env
 PORT=5000
-MONGO_URL=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
+MONGO_URL= mongodb+srv://bilalkhan17216_db_user:Bilalkhan1122@project1.cji9a1d.mongodb.net/?appName=project1
+JWT_SECRET=b514411c13c9737daff8479351f88c2f2719131f6bc23c72d4df337dd2312601cd72ca9c0289c7f450ee9597524189b6125635fba24d85272c199ab51b72322d
 ```
 
 ### Frontend `.env`
@@ -367,25 +358,25 @@ Screenshots will be added as the project UI is completed.
 
 ### Planned Screenshots
 
-<!-- ![Login](./screenshots/login.png) -->
+[Login](./screenshots/login.jpeg) 
 
-<!-- ![Register](./screenshots/register.png) -->
+[Register](./screenshots/register.jpeg) 
 
-<!-- ![Dashboard](./screenshots/dashboard.png) -->
+[Dashboard](./screenshots/dashboard.jpeg)
 
-<!-- ![Leads](./screenshots/leads.png) -->
+[Leads](./screenshots/leads.jpeg) 
 
-<!-- ![Add Lead](./screenshots/add-lead.png) -->
+[Add Lead](./screenshots/addlead.jpeg) 
 
-<!-- ![Lead Details](./screenshots/lead-details.png) -->
+[Lead Details](./screenshots/lead-details.png) 
 
-<!-- ![Pipeline](./screenshots/pipeline.png) -->
+[Pipeline](./screenshots/pipeline.jpeg) 
 
-<!-- ![Follow-ups](./screenshots/follow-ups.png) -->
+[Follow-ups](./screenshots/followups.png) 
 
-<!-- ![Users](./screenshots/users.png) -->   
+[Users](./screenshots/users.jpeg)    
 
-<!-- ![Import Export](./screenshots/import-export.png) -->
+[Import Export](./screenshots/import-export.jpegg)
 
 ---
 
