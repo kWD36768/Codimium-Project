@@ -52,34 +52,6 @@ const registerUser = async (req , res) =>{
             message: "user registered successfully"
         });
 
-
-        // ==============================
-        // JWT ابھی ضروری نہیں
-        // ==============================
-
-        /*
-        const dataWithoutPassword = response._doc;
-
-        jwt.sign(
-            dataWithoutPassword,
-            process.env.JWT_KEY,
-            { expiresIn: 60 * 60 * 24 * 30 },
-            (error, token) => {
-
-                if (error) {
-                    return res.status(500).json({
-                        message: "internal server error"
-                    });
-                }
-
-                return res.status(200).json({
-                    message: "user registered successfully",
-                    data: dataWithoutPassword,
-                    auth: token
-                });
-            }
-        );
-        */
     });
 
 } catch (error) {
@@ -92,35 +64,7 @@ const registerUser = async (req , res) =>{
 }
 }
 
-// const LoginUser = async (req , res) =>{
-//     try{
 
-//         const {email , password} = req.body
-        
-//         const user = await User.findOne({email : email});
-        
-//         if(!user){
-            
-//             return res.status(400).json({message : "user with this email does not exist"})}
-//            const ismatch = await bcrypt.compare(password , user.password) ;
-           
-//            if (!ismatch){
-            
-//             return res.status(400).json({message : "invalid password"})
-            
-//            }
-           
-//            const {password  , ...userWithoutPassword} = user._doc ; 
-
-//            const token = jwt.sign(userWithoutPassword , process.env.JWT_KEY , {expiresIn : 60 * 60 *24 *300});
-//            res.status(200).json({message : "user logged in successfully" , data : userWithoutPassword , auth : token})
-  
-//     }
-//     catch(error){
-//         res.status(500).json({message : "user could not be logged in"})
-//         console.log(error)
-//     }
-// }
 
 const LoginUser = async (req, res) => {
 
@@ -173,9 +117,26 @@ const LoginUser = async (req, res) => {
 
     return res.status(500).json({
       message: "User could not be logged in"
+    });}};
+
+const getTeamMembers = async (req, res) => {
+  try {
+    const response = await User.find({
+      role: "team member"
+    }).select("_id name email");
+
+    res.status(200).json({
+      message: "Team Members fetched successfully",
+      data: response
     });
 
+  } catch (error) {
+    console.log(error);
+
+    res.status(500).json({
+      message: "Failed to fetch Team Members"
+    });
   }
 };
 
-module.exports = {registerUser , LoginUser}
+module.exports = {registerUser , LoginUser  , getTeamMembers}

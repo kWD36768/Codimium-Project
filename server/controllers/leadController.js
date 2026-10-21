@@ -1,60 +1,61 @@
 const Lead = require("../models/Lead");
-const addLead = async(req , res) =>{
-try{
-    const dataToSave = new Lead(req.body);
-    console.log(req.body)
-    const response = await dataToSave.save();
-    res.status(200).json({message : "Lead added successfully" , data : response})
-}
-
-catch(error){
-    console.log(error)
-     res.status(500).json({message : "Lead could not added"})
-}
-    
-}
-
-const readLead =  async (req , res) =>{
-    try{
-        const response  = await Lead.find();
-
-        res.status(200).json({message :  "Lead Readed successfully" , data : response }) ; 
-    }
-
-    catch(error){
-        console.log(error)
-        res.status(500).json({message :  "Internal Server error"}) ; 
-         
-    }
-}
-
-const readLeadById = async (req , res)=>{
-
-    try{
-        const response = await Lead.findById(req.params.id);
-        res.status(200).json({message : "Lead found successfully" , data : response})
-
-    }
-    catch(error){
-        console.log(error)
-        res.status(500).json({message :  "Inernal server error"})
-    }
-
- }
- const updateLead = async (req, res) => {
+const User = require("../models/User");
+const addLead = async (req, res) => {
   try {
-    const { id } = req.params;
+    const dataToSave = { ...req.body };
 
-    const response = await Lead.findByIdAndUpdate(
-      id,
-     {$set : req.body}, 
-      { new: true,
-        runValidators : true
-       }
-    );
+    // Team Member apni banayi hui lead khud ko assign karega
+    if (req.user.role !== "admin") {
+      dataToSave.assignedTo = req.user.userId;
+
+    }
+
+    // Admin sirf registered Team Member ko assign kare
+    if (req.user.role === "admin") {
+      const assignedUser = await User.findById(
+        dataToSave.assignedTo
+      ).select("role");
+
+      if (!assignedUser || assignedUser.role !== "team member") {
+        return res.status(400).json({
+          message: "Please select a valid Team Member"
+        });
+      }
+    }
+
+    // Purana field use nahi karna
+    delete dataToSave.assignedTeamMember;
+
+    const response = await new Lead(dataToSave).save();
+
+    return res.status(201).json({
+      message: "Lead added successfully",
+      data: response
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(400).json({
+      message: "Lead could not be added",
+      error: error.message
+    });
+  }
+};
+
+const readLead = async (req, res) => {
+  try {
+    let filter = {};
+
+    if (req.user.role !== "admin") {
+      filter.assignedTo = req.user.userId;
+    }
+
+    const response = await Lead.find(filter)
+      .populate("assignedTo", "name email");
 
     res.status(200).json({
-      message: "Lead updated successfully",
+      message: "Leads read successfully",
       data: response
     });
 
@@ -62,6 +63,117 @@ const readLeadById = async (req , res)=>{
     console.log(error);
 
     res.status(500).json({
+      message: "Failed to read leads"
+    });
+  }
+};
+
+const readLeadById = async (req, res) => {
+  try {
+    const response = await Lead.findById(req.params.id)
+      .populate("assignedTo", "name email");
+
+    if (!response) {
+      return res.status(404).json({
+        message: "Lead not found"
+      });
+    }
+
+    let assignedId = response.assignedTo;
+
+    if (assignedId && typeof assignedId === "object") {
+      assignedId = assignedId._id;
+    }
+
+    if (
+      req.user.role !== "admin" &&
+      String(assignedId) !== String(req.user.userId)
+    ) {
+      return res.status(403).json({
+        message: "You cannot access this lead"
+      });
+    }
+
+    return res.status(200).json({
+      message: "Lead found successfully",
+      data: response
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      message: "Failed to read lead"
+    });
+  }
+};
+const updateLead = async (req, res) => {
+  try {
+
+    
+    const { id } = req.params;
+
+    const lead = await Lead.findById(id);
+
+    if (!lead) {
+      return res.status(404).json({
+        message: "Lead not found"
+      });
+    }
+
+    if (
+      req.user.role !== "admin" &&
+      String(lead.assignedTo) !== String(req.user.userId)
+    ) {
+      return res.status(403).json({
+        message: "You cannot update this lead"
+      });
+    }
+
+    const updateData = { ...req.body };
+
+    delete updateData._id;
+    delete updateData.__v;
+    delete updateData.createdAt;
+    delete updateData.updatedAt;
+    delete updateData.assignedTeamMember;
+
+    // Team Member apni lead ko doosre user ko transfer nahi kar sakta
+    if (req.user.role !== "admin") {
+      delete updateData.assignedTo;
+    }
+
+    // Admin bhi sirf actual Team Member ko assign kar sake
+    if (req.user.role === "admin" && updateData.assignedTo) {
+      const assignedUser = await User.findById(
+        updateData.assignedTo
+      ).select("role");
+
+      if (!assignedUser || assignedUser.role !== "team member") {
+        return res.status(400).json({
+          message: "Please select a valid Team Member"
+        });
+      }
+    }
+
+    const response = await Lead.findByIdAndUpdate(
+      id,
+      { $set: updateData },
+      {
+        returnDocument: "after",
+        runValidators: true
+      }
+    );
+
+    return res.status(200).json({
+      message: "Lead updated successfully",
+      data: response
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(400).json({
       message: "Failed to update lead",
       error: error.message
     });
@@ -69,58 +181,131 @@ const readLeadById = async (req , res)=>{
 };
 
 const deleteLead = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-  try{
+    const lead = await Lead.findById(id);
 
-    const {id}  = req.params ; 
-    
- const response  = await Lead.findByIdAndDelete(req.params.id);
-    res.status(200).json({message : "Lead Deleted successfully" , data : response})    
-
-  }
-
-  catch(error){
-    console.log(error)
-   
-    res.status(500).json({message : "Failed to delete lead"})    
-  }
-}
-  const deleteMany = async (req , res) =>{
-    try{
-
-      const response = await Lead.deleteMany({_id  : {$in  : req.body.ids}});
-      res.status(200).json({message : "Leads deleted successfully" , data : response})
+    if (!lead) {
+      return res.status(404).json({
+        message: "Lead not found"
+      });
     }
 
-    catch(error){
-      console.log(error)
-      res.status(500).json({message : "Failed to delete leads"})
+    if (
+      req.user.role !== "admin" &&
+      String(lead.assignedTo) !== String(req.user.userId)
+    ) {
+      return res.status(403).json({
+        message: "You cannot delete this lead"
+      });
     }
-} 
 
-const searchLead = async(req , res) =>{
-  try{
-    const response  = await Lead.find({
-      $or : [
-        {businessName : {$regex : new RegExp(req.params.key , "i")}},
-        {businessCategory : {$regex : new RegExp(req.params.key , "i")}},
-        {city : {$regex : new RegExp(req.params.key , "i")}},
-        {status : {$regex : new RegExp(req.params.key , "i")}},
-        {assignedTeamMember : {$regex : new RegExp(req.params.key , "i")}}
-           
+    const response = await Lead.findByIdAndDelete(id);
+
+    return res.status(200).json({
+      message: "Lead deleted successfully",
+      data: response
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      message: "Failed to delete lead"
+    });
+  }
+};
+const deleteMany = async (req, res) => {
+  try {
+    const { ids } = req.body;
+
+    if (!Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({
+        message: "Please select leads to delete"
+      });
+    }
+
+    const selectedLeads = await Lead.find({
+      _id: { $in: ids }
+    }).select("_id assignedTo");
+
+    // Team Member ki selected list mein kisi aur ki lead ho
+    if (
+      req.user.role !== "admin" &&
+      selectedLeads.some(
+        (lead) =>
+          String(lead.assignedTo) !== String(req.user.userId)
+      )
+    ) {
+      return res.status(403).json({
+        message: "You cannot delete leads assigned to another member"
+      });
+    }
+
+    const response = await Lead.deleteMany({
+      _id: { $in: ids }
+    });
+
+    return res.status(200).json({
+      message: "Selected leads deleted successfully",
+      data: response
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      message: "Failed to delete selected leads"
+    });
+  }
+}; 
+
+const searchLead = async (req, res) => {
+  try {
+    const key = req.params.key;
+
+    const matchingUsers = await User.find({
+      role: "team member",
+      name: { $regex: key, $options: "i" }
+    }).select("_id");
+
+    const filter = {
+      $or: [
+        { businessName: { $regex: key, $options: "i" } },
+        { businessCategory: { $regex: key, $options: "i" } },
+        { city: { $regex: key, $options: "i" } },
+        { status: { $regex: key, $options: "i" } },
+        { potentialService: { $regex: key, $options: "i" } },
+        {
+          assignedTo: {
+            $in: matchingUsers.map((user) => user._id)
+          }
+        }
       ]
-    })
+    };
 
-    if(!response){
-    return res.status(404).json({message : "No leads found matching the search criteria"})
+    // Team Member ko sirf apni assigned leads milengi
+    if (req.user.role !== "admin") {
+      filter.assignedTo = req.user.userId;
     }
-    res.status(200).json({message : "Leads found successfully" , data : response})
-  }
 
-  catch(error){
-    console.log(error)
-    res.status(500).json({message : "Failed to search leads"})
-  }
+    const response = await Lead.find(filter)
+      .populate("assignedTo", "name email");
 
-}
+    return res.status(200).json({
+      message: "Search completed",
+      data: response
+    });
+
+  } catch (error) {
+    console.log(error);
+
+    return res.status(500).json({
+      message: "Failed to search leads"
+    });
+  }
+};
+
+
 module.exports = {addLead , readLead , readLeadById ,updateLead ,deleteLead , deleteMany,searchLead} 

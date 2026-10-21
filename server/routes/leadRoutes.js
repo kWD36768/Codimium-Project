@@ -1,20 +1,22 @@
 const express = require("express");
 const { addLead, readLead, readLeadById, updateLead, deleteLead, deleteMany, searchLead } = require("../controllers/leadController");
+const authMiddleware = require("../middleware/authMiddleware");
 const leadRoutes = express.Router() ;
 
-leadRoutes.post('/addLead' , addLead)  
 
-leadRoutes.get('/readLead' , readLead)   
+leadRoutes.post("/addLead", authMiddleware, addLead);
 
-leadRoutes.get("/readLeadById/:id",readLeadById);
+leadRoutes.get('/readLead',authMiddleware , readLead)   
 
-leadRoutes.put("/updateLead/:id", updateLead);
+leadRoutes.get("/readLeadById/:id",authMiddleware, readLeadById);
 
-leadRoutes.delete("/deleteLead/:id", deleteLead);
+leadRoutes.put("/updateLead/:id", authMiddleware, updateLead);
 
-leadRoutes.delete("/deleteMany", deleteMany)   
+leadRoutes.delete("/deleteLead/:id", authMiddleware, deleteLead);
 
-leadRoutes.get("/searchLead/:key", searchLead)    
+leadRoutes.delete("/deleteMany", authMiddleware, deleteMany)   
+
+leadRoutes.get("/searchLead/:key", authMiddleware, searchLead)    
 
 
 

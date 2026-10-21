@@ -83,18 +83,11 @@ const leadSchema = new mongoose.Schema(
       required: true
     },
 
-    assignedTo: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true
-    },
-
-    assignedTeamMember: {
-      type: String,
-      default: "",
-      required: true
-    },
-
+ assignedTo: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "User",
+  required: true
+},
     followUpDate: {
       type: Date,
       required: true

@@ -1,15 +1,25 @@
+const express = require("express");
 
-const express = require('express') ;
-const { registerUser, LoginUser } = require('../controllers/userController');
+const {
+  registerUser,
+  LoginUser,
+  getTeamMembers
+} = require("../controllers/userController");
 
-const userRoutes = express.Router() ; 
+const authMiddleware = require("../middleware/authMiddleware");
+const adminMiddleware = require("../middleware/adminMiddleware");
 
-// userRoutes.js
+const userRoutes = express.Router();
+
 userRoutes.post("/register", registerUser);
 
 userRoutes.post("/login", LoginUser);
 
+userRoutes.get(
+  "/team-members",
+  authMiddleware,
+  adminMiddleware,
+  getTeamMembers
+);
 
-
-
-module.exports = userRoutes ;
+module.exports = userRoutes;
