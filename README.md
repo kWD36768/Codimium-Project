@@ -86,7 +86,7 @@ The dashboard provides an overview of the CRM system and gives users quick acces
 
 <!-- Add Dashboard Screenshot here later -->
 
-[Dashboard](./screenshots/dashboard.jpeg) 
+[Dashboard](./screenshots/dashboard.JPEG) 
 
 ---
 
@@ -121,7 +121,7 @@ Users can create new leads by entering the required business and contact informa
 
 <!-- Add Add Lead Screenshot here later -->
 
- ![Add Lead](./screenshots/addlead.jpeg) 
+ [Add Lead](./screenshots/addlead.jpeg) 
 
 ---
 
