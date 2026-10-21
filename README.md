@@ -86,7 +86,8 @@ The dashboard provides an overview of the CRM system and gives users quick acces
 
 <!-- Add Dashboard Screenshot here later -->
 
-[Dashboard](./screenshots/dashboard.JPEG) 
+[Dashboard]
+(./screenshots/dashboard.JPEG) 
 
 ---
 
@@ -358,25 +359,23 @@ Screenshots will be added as the project UI is completed.
 
 ### Planned Screenshots
 
-[Login](./screenshots/login.jpeg) 
+![Login](./screenshots/login.jpeg)
 
-[Register](./screenshots/register.jpeg) 
+![Register](./screenshots/register.jpeg)
 
-[Dashboard](./screenshots/dashboard.jpeg)
+![Dashboard](./screenshots/dashboard.jpeg)
 
-[Leads](./screenshots/leads.jpeg) 
+![Leads](./screenshots/leads.jpeg)
 
-[Add Lead](./screenshots/addlead.jpeg) 
+![Add Lead](./screenshots/addlead.jpeg)
 
-[Lead Details](./screenshots/lead-details.png) 
+![Pipeline](./screenshots/pipeline.jpeg)
 
-[Pipeline](./screenshots/pipeline.jpeg) 
+![Follow-ups](./screenshots/followups.jpeg)
 
-[Follow-ups](./screenshots/followups.png) 
+![Users](./screenshots/users.jpeg)
 
-[Users](./screenshots/users.jpeg)    
-
-[Import Export](./screenshots/import-export.jpegg)
+![Import Export](./screenshots/import-export.jpeg)
 
 ---
 
