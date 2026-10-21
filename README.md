@@ -86,8 +86,7 @@ The dashboard provides an overview of the CRM system and gives users quick acces
 
 <!-- Add Dashboard Screenshot here later -->
 
-[Dashboard]
-(./screenshots/dashboard.JPEG) 
+![Dashboard](./screenshots/dashboard.jpeg) 
 
 ---
 
@@ -317,7 +316,7 @@ npm run dev
 
 ```env
 PORT=5000
-MONGO_URL= mongodb+srv://bilalkhan17216_db_user:Bilalkhan1122@project1.cji9a1d.mongodb.net/?appName=project1
+MONGO_URL= mongodb+srv://bilalkhan17216_db_user:Bilalkhan7788@project1.cji9a1d.mongodb.net/?appName=project1
 JWT_SECRET=b514411c13c9737daff8479351f88c2f2719131f6bc23c72d4df337dd2312601cd72ca9c0289c7f450ee9597524189b6125635fba24d85272c199ab51b72322d
 ```
 
