@@ -112,7 +112,7 @@ The Leads section allows users to view and manage potential clients.
 
 <!-- Add Leads Screenshot here later -->
 
-[Leads](./screenshots/leads.jpeg) 
+![Leads](./screenshots/leads.jpeg) 
 
 ---
 
