@@ -145,7 +145,6 @@ const handleSearchLead = async (e) =>{
 
       <div className="max-w-7xl mx-auto">
 
-        {/* Header */}
 
         <div className="flex justify-between items-center mb-6">
 
@@ -172,7 +171,6 @@ const handleSearchLead = async (e) =>{
         </div>
 
 
-        {/* Select All + Delete Selected */}
 
         <div className="bg-white rounded-xl shadow p-4 mb-4 flex items-center justify-between">
 
@@ -210,7 +208,6 @@ const handleSearchLead = async (e) =>{
   className="bg-white rounded-xl shadow w-full p-4 mb-4 flex items-center justify-between"
 />
 
-        {/* Table */}
 
         <div className="bg-white rounded-xl shadow overflow-hidden">
 
@@ -255,13 +252,11 @@ const handleSearchLead = async (e) =>{
 
             <tbody>
 
-              {/* Dynamic Leads */}
 
               {leads.map((lead) => (
 
                 <tr key={lead._id} className="border-t">
 
-                  {/* Select */}
 
                   <td className="p-4">
 
@@ -277,44 +272,37 @@ const handleSearchLead = async (e) =>{
                   </td>
 
 
-                  {/* Business */}
 
                   <td className="p-4">
                     {lead.businessName}
                   </td>
 
 
-                  {/* Contact */}
 
                   <td className="p-4">
                     {lead.contactPerson}
                   </td>
 
 
-                  {/* City */}
 
                   <td className="p-4">
                     {lead.city}
                   </td>
 
 
-                  {/* Status */}
 
                   <td className="p-4">
                     {lead.status}
                   </td>
 
-                  {/* Assigned Team Member */}
                   <td className="p-4">
                     {lead.assignedTo.name}
                   </td>
 
 
-                  {/* Actions */}
 
                  <td className="p-4 flex gap-2">
 
-  {/* Edit */}
 
   <Link
     to={`/edit-lead/${lead._id}`}
@@ -324,7 +312,6 @@ const handleSearchLead = async (e) =>{
   </Link>
 
 
-  {/* Delete */}
 
   <button
     onClick={() => handleDeleteLead(lead._id)}

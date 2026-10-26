@@ -378,7 +378,6 @@ function ImportExport() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-          {/* Import */}
           <div className="bg-white rounded-xl border border-slate-200 shadow p-6">
 
             <h2 className="text-xl font-semibold text-[#1D293D]">

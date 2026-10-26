@@ -16,7 +16,6 @@ function EditLead() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Admin ke liye Team Members load karna
   useEffect(() => {
     const handleReadTeamMembers = async () => {
       try {
@@ -40,7 +39,6 @@ function EditLead() {
     }
   }, [token, isAdmin]);
 
-  // Lead ka existing data load karna
   useEffect(() => {
     const handleReadLeadById = async () => {
       try {

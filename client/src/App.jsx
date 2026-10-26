@@ -27,7 +27,6 @@ function App() {
 
       <Routes>
 
-        {/* Public Routes */}
 
         <Route
           path="/"
@@ -45,7 +44,6 @@ function App() {
         />
 
 
-        {/* Protected Routes */}
 
         <Route element={<ProtectedRoute />}>
 

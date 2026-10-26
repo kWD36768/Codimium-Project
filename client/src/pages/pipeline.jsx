@@ -11,7 +11,6 @@ function Pipeline() {
     (state) => state.leads.value
   );
 
-  // Login user ki leads fetch karna
   useEffect(() => {
     const handleReadLeads = async () => {
       try {
@@ -123,6 +122,5 @@ function Pipeline() {
   );
 }
 
-// 6ad07c2a309f4f6a935178c4
 
 export default Pipeline;

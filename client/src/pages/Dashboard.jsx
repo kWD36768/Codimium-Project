@@ -35,7 +35,6 @@ console.log(leadsData)
   return (
     <div className="p-8">
 
-      {/* Header */}
 
       <div className="flex justify-between items-center mb-8">
 
@@ -66,12 +65,10 @@ console.log(leadsData)
       </div>
 
 
-      {/* Cards */}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
 
-        {/* Total Leads */}
 
         <div className="bg-white rounded-xl border border-slate-200 p-6">
 
@@ -86,7 +83,6 @@ console.log(leadsData)
         </div>
 
 
-        {/* New Leads */}
 
         <div className="bg-white rounded-xl border border-slate-200 p-6">
 
@@ -101,7 +97,6 @@ console.log(leadsData)
         </div>
 
 
-        {/* Interested */}
 
         <div className="bg-white rounded-xl border border-slate-200 p-6">
 
@@ -116,7 +111,6 @@ console.log(leadsData)
         </div>
 
 
-        {/* Won */}
 
         <div className="bg-white rounded-xl border border-slate-200 p-6">
 
@@ -184,7 +178,6 @@ console.log(leadsData)
       
 
 
-      {/* Recent Leads */}
 
       <div className="bg-white rounded-xl border border-slate-200 mt-8">
 

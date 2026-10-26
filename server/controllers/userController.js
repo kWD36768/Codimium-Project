@@ -10,14 +10,12 @@ const registerUser = async (req , res) =>{
 
     const { name, email, password, confirmPassword } = req.body;
 
-    // Password confirmation
     if (password !== confirmPassword) {
         return res.status(400).json({
             message: "password and confirm password do not match"
         });
     }
 
-    // Check existing email
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
@@ -26,7 +24,6 @@ const registerUser = async (req , res) =>{
         });
     }
 
-    // Password hash
     const saltRounds = 10;
 
     bcrypt.hash(password, saltRounds, async (error, hashedPassword) => {
@@ -37,7 +34,6 @@ const registerUser = async (req , res) =>{
             });
         }
 
-        // Save user
         const dataToSave = new User({
             name: name,
             email: email,

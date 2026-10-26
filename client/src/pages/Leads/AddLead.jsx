@@ -51,13 +51,11 @@ function AddLead() {
 
       const dataToSend = { ...addLeadData };
 
-      // Admin ko Team Member select karna hoga
       if (isAdmin && !dataToSend.assignedTo) {
         alert("Please select a Team Member");
         return;
       }
 
-      // Team Member ko backend khud assign karega
       if (!isAdmin) {
         delete dataToSend.assignedTo;
       }
@@ -84,7 +82,6 @@ function AddLead() {
     }
   };
 
-  // Sirf Admin ke liye Team Members fetch karna
   useEffect(() => {
     const handleReadTeamMembers = async () => {
       try {
@@ -242,7 +239,6 @@ function AddLead() {
               className="border p-3 rounded-lg"
             />
 
-            {/* Assignment dropdown sirf Admin ko dikhega */}
             {isAdmin && (
               <select
                 name="assignedTo"

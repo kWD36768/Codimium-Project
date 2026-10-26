@@ -4,13 +4,11 @@ const addLead = async (req, res) => {
   try {
     const dataToSave = { ...req.body };
 
-    // Team Member apni banayi hui lead khud ko assign karega
     if (req.user.role !== "admin") {
       dataToSave.assignedTo = req.user.userId;
 
     }
 
-    // Admin sirf registered Team Member ko assign kare
     if (req.user.role === "admin") {
       const assignedUser = await User.findById(
         dataToSave.assignedTo
@@ -23,7 +21,6 @@ const addLead = async (req, res) => {
       }
     }
 
-    // Purana field use nahi karna
     delete dataToSave.assignedTeamMember;
 
     const response = await new Lead(dataToSave).save();
@@ -138,12 +135,10 @@ const updateLead = async (req, res) => {
     delete updateData.updatedAt;
     delete updateData.assignedTeamMember;
 
-    // Team Member apni lead ko doosre user ko transfer nahi kar sakta
     if (req.user.role !== "admin") {
       delete updateData.assignedTo;
     }
 
-    // Admin bhi sirf actual Team Member ko assign kar sake
     if (req.user.role === "admin" && updateData.assignedTo) {
       const assignedUser = await User.findById(
         updateData.assignedTo
@@ -230,7 +225,6 @@ const deleteMany = async (req, res) => {
       _id: { $in: ids }
     }).select("_id assignedTo");
 
-    // Team Member ki selected list mein kisi aur ki lead ho
     if (
       req.user.role !== "admin" &&
       selectedLeads.some(

@@ -54,9 +54,9 @@ const navigate = useNavigate();
       }
       setErrors(newError)
       
-    //     setTimeout(() => {
-    //     setErrors({});
-    // }, 3000);
+        setTimeout(() => {
+        setErrors({});
+    }, 3000);
 
   return Object.keys(newError).length === 0 ;
     
@@ -85,7 +85,6 @@ const navigate = useNavigate();
 
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
 
-        {/* Heading */}
         <div className="text-center mb-8">
 
           <h1 className="text-3xl font-bold text-slate-800">
@@ -99,11 +98,9 @@ const navigate = useNavigate();
         </div>
 
 
-        {/* Register Form */}
         <form className="space-y-5"
           onSubmit={handleRegister}>
 
-          {/* Name */}
           <div>
 
             <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -121,7 +118,6 @@ const navigate = useNavigate();
           </div>
 
 
-          {/* Email */}
           <div>
 
             <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -139,7 +135,6 @@ const navigate = useNavigate();
           </div>
 
 
-          {/* Password */}
           <div>
 
             <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -157,7 +152,6 @@ const navigate = useNavigate();
           </div>
 
 
-          {/* Confirm Password */}
           <div>
 
             <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -176,7 +170,6 @@ const navigate = useNavigate();
           </div>
 
 
-          {/* Register Button */}
           <button
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition"
@@ -189,7 +182,6 @@ const navigate = useNavigate();
         </form>
 
 
-        {/* Login Link */}
         <div className="text-center mt-6">
 
           <p className="text-slate-600">
